@@ -1,5 +1,23 @@
 class Solution {
+
+    public ListNode reverse(ListNode head) {
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
     public int pairSum(ListNode head) {
+
         ListNode slow = head;
         ListNode fast = head;
 
@@ -8,24 +26,16 @@ class Solution {
             fast = fast.next.next;
         }
 
-        ListNode prev = null;
-        ListNode curr = slow;
-
-        while (curr != null) {
-            ListNode next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
+        slow = reverse(slow);
 
         int max = 0;
-        ListNode first = head;
-        ListNode second = prev;
 
-        while (second != null) {
-            max = Math.max(max, first.val + second.val);
-            first = first.next;
-            second = second.next;
+        while (slow != null) {
+
+            max = Math.max(max, head.val + slow.val);
+
+            head = head.next;
+            slow = slow.next;
         }
 
         return max;
