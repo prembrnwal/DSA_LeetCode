@@ -1,14 +1,14 @@
 class Solution {
     List<List<Integer>>res;
     public List<List<Integer>> solve(TreeNode root)
-    {
+    {                                              
         Queue<TreeNode>q=new ArrayDeque<>();
         res=new ArrayList<>();
         if(root==null)
             return res;
         q.add(root);
         while(!q.isEmpty())
-        {
+        { 
             int size=q.size();
             List<Integer>li=new ArrayList<>();
             for(int i=0;i<size;i++)
